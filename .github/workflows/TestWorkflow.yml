@@ -6,7 +6,7 @@
 name: Automate Test Issue Creation
 on:
   schedule:
-    - cron: 15 * * * *
+    - cron: 10 * * * *
 
 jobs:
   create_issue:
