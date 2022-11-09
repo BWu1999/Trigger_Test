@@ -6,7 +6,7 @@
 name: Automate Test Issue Creation
 on:
   schedule:
-    - cron: 20 * * * *
+    - cron: 25 * * * *
 
 jobs:
   create_issue:
@@ -18,7 +18,7 @@ jobs:
       - name: Create team sync issue
         uses: imjohnbo/issue-bot@v3.4.1
         with:
-          assignees: "bwu1999"
+          assignees: "BWu1999"
           labels: "documentation"
           title: "Test Issue"
           body: |
