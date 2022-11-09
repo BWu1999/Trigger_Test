@@ -16,7 +16,7 @@ jobs:
       issues: write
     steps:
       - name: Create team sync issue
-        uses: imjohnbo/issue-bot@v3.4.1
+        uses: imjohnbo/issue-bot@v3
         with:
           assignees: "BWu1999"
           labels: "documentation"
