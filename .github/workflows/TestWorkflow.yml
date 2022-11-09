@@ -19,7 +19,7 @@ jobs:
         uses: imjohnbo/issue-bot@3daae12aa54d38685d7ff8459fc8a2aee8cea98b
         with:
           assignees: "bwu1999"
-          labels: "auto, test"
+          labels: "documentation"
           title: "Test Issue"
           body: |
             ### Assuming curl into inbox works, stream release no. and application name
