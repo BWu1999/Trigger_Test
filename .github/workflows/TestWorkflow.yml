@@ -1,0 +1,36 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+name: Automate Test Issue Creation
+on:
+  schedule:
+    - cron: 15 * * * *
+
+jobs:
+  create_issue:
+    name: Create Test Issue
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Create team sync issue
+        uses: imjohnbo/issue-bot@3daae12aa54d38685d7ff8459fc8a2aee8cea98b
+        with:
+          assignees: "bwu1999"
+          labels: "auto, test"
+          title: "Test Issue"
+          body: |
+            ### Assuming curl into inbox works, stream release no. and application name
+
+            - [ ] Release Task 1
+            - [ ] Release Task 2
+            - [ ] Release Task 3
+                    
+            ### Discussion Points
+            Add things to discuss below
+          pinned: false
+          close-previous: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
