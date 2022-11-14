@@ -1,0 +1,22 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+name: Automate Test Issue Creation Using Notif
+on:
+  schedule:
+    - cron: '5 * * * *'
+
+jobs:
+  check_release:
+    name: Check Release
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: getting notification data
+        run: curl \
+             -H "Accept: application/vnd.github+json" \
+             -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+             https://api.github.com/notificationscurl -o data.json
