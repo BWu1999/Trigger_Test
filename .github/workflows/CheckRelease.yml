@@ -17,6 +17,6 @@ jobs:
     steps:
       - name: getting notification data
         run: |
-          gh api -H "Accept: application/vnd.github+json" /repos/BWutang/Testing_Trigger/notifications -o data.json
+          gh api -H "Accept: application/vnd.github+json" /repos/BWutang/Testing_Trigger/notifications
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
