@@ -10,4 +10,4 @@ jobs:
         run: |
           curl -H "Accept: application/vnd.github+json" \
           -H "Authorization: Bearer ${{ secrets.notification_check }}" \
-          https://api.github.com/notifications
+          https://api.github.com/notifications -o data.json
