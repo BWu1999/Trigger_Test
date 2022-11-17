@@ -8,6 +8,8 @@
 # -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
 #  https://api.github.com/repos/BWutang/Testing_Trigger/notifications
 
+# gh api -H "Accept: application/vnd.github+json" /notifications
+
 
 
 name: Automate Test Issue Creation Using Notif
@@ -23,6 +25,6 @@ jobs:
     steps:
       - name: getting notification data
         run: |
-          gh api -H "Accept: application/vnd.github+json" /notifications
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          curl -H "Accept: application/vnd.github+json" \
+          -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+          https://api.github.com/notifications
