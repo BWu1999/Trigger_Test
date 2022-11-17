@@ -9,5 +9,5 @@ jobs:
       - name: getting notification data
         run: |
           curl -H "Accept: application/vnd.github+json" \
-          -H "Authorization: Bearer ${{ secrets.notif_check }}" \
-          https://api.github.com/repos/Bwu1999/Trigger_Test/notifications
+          -H "Authorization: Bearer ${{ secrets.notification_check }}" \
+          https://api.github.com/repos/notifications
