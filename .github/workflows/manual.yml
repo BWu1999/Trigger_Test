@@ -12,4 +12,4 @@ jobs:
           -H "Authorization: Bearer ${{ secrets.notification_check }}" \
           https://api.github.com/notifications -o data.json
       - name: parse notif
-        run: echo '::set-output name=type ::'$(jq -r '.subject' data.json)
+        run: echo '::set-output name=type ::'$(jq -r '.[].subject.type' data.json)
