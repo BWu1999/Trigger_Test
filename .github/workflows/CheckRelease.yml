@@ -19,8 +19,7 @@ jobs:
   check_release:
     name: Check Release
     runs-on: ubuntu-latest
-    permissions:
-      issues: write
+    permissions: write-all
     steps:
       - name: getting notification data
         run: |
