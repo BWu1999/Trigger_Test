@@ -3,6 +3,13 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
+# curl \
+#  -H "Accept: application/vnd.github+json" \
+# -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+#  https://api.github.com/repos/BWutang/Testing_Trigger/notifications
+
+
+
 name: Automate Test Issue Creation Using Notif
 on:
   schedule:
