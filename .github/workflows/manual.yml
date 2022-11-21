@@ -29,9 +29,10 @@ jobs:
               if [[ "$i" == *"Release"* ]]
               then
                 echo "here"
-              else
-                echo "not here"
+                echo "relInd=$count" >>$GITHUB_OUTPUT
+                echo "title=${titles[$count]}" >> $GITHUB_OUTPUT
               fi
+              count+=1
             done
           for i in "{$types[@]}"
             do
