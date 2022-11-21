@@ -24,17 +24,17 @@ jobs:
           threadids=($(jq -r '.[].subject.type' data.json))
           count=0
           for i in "{$types[@]}"
-          do
-             echo ${repos[$count]}
-             if [${types[$count]} == "Release" && ${repos[$count]} == "Testing_Trigger"]
-             then
-               echo "relInd=$count" >>$GITHUB_OUTPUT
-               echo "title=${titles[$count]}" >> $GITHUB_OUTPUT
-               echo "here"
-             else
-               count+=1
-             fi
-          done
+            do
+               echo ${repos[$count]}
+               if [${types[$count]} == "Release" && ${repos[$count]} == "Testing_Trigger"]
+               then
+                 echo "relInd=$count" >>$GITHUB_OUTPUT
+                 echo "title=${titles[$count]}" >> $GITHUB_OUTPUT
+                 echo "here"
+               else
+                 count+=1
+               fi
+            done
         #  types=($(jq -r '.[].subject.type' data.json))
         #  echo ${types[0]}
         #  echo $(jq -r '.[].subject.type' data.json)
