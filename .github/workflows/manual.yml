@@ -24,12 +24,13 @@ jobs:
           declare -i count=0
           for i in "${types[@]}"
             do
-              if [[ "$i" == *"Release"* ]]
+              if [[ "$i" == *"Release"* ]] && [[ "${repos[$count]}" == *"Testing_Trigger"* ]]
               then
                 echo "relBool=true" >> $GITHUB_ENV
                 echo "repo=${repos[$count]}" >> $GITHUB_ENV
                 echo "threadID=${threadids[$count]}" >> $GITHUB_ENV
                 echo "${threadids[$count]}"
+                break
               fi
               count+=1
             done
