@@ -18,30 +18,13 @@ jobs:
       - name: parse notif
         id: parsed
         run: |
-          gtypes=($(jq -r '.[].subject.type' data.json))
-          grepos=($(jq -r '.[].subject.type' data.json))
-          gtitles=($(jq -r '.[].subject.type' data.json))
-          gthreadids=($(jq -r '.[].subject.type' data.json))
-          echo "types=$gtypes" >> $GITHUB_OUTPUT
-          echo "repos=$grepos" >> $GITHUB_OUTPUT
-          echo "titles=$gtitles" >> $GITHUB_OUTPUT
-          echo "threadids=$gthreadids" >> $GITHUB_OUTPUT
-        #  types=($(jq -r '.[].subject.type' data.json))
-        #  echo ${types[0]}
-        #  echo $(jq -r '.[].subject.type' data.json)
-        #  echo $(jq -r '.[].repository.name' data.json)
-        #run: echo '::set-output name=type ::'$(jq -r '.[].subject.type' data.json)
-
-      - name: conditional check
-        id: cond
-        run: |
+          types=($(jq -r '.[].subject.type' data.json))
+          repos=($(jq -r '.[].subject.type' data.json))
+          titles=($(jq -r '.[].subject.type' data.json))
+          threadids=($(jq -r '.[].subject.type' data.json))
           count=0
-          repos=${{ steps.parsed.output.repos }}
-          types=${{ steps.parsed.output.types }}
-          titles=${{ steps.parsed.output.titles }}
-          for i in "${{ steps.parsed.output.types }}"
+          for i in "$types"
           do
-             echo ${{ steps.parsed.output.repos }}
              echo ${repos[$count]}
              if [${types[$count]} == "Release" && ${repos[$count]} == "Testing_Trigger"]
              then
@@ -52,12 +35,18 @@ jobs:
                count+=1
              fi
           done
+        #  types=($(jq -r '.[].subject.type' data.json))
+        #  echo ${types[0]}
+        #  echo $(jq -r '.[].subject.type' data.json)
+        #  echo $(jq -r '.[].repository.name' data.json)
+        #run: echo '::set-output name=type ::'$(jq -r '.[].subject.type' data.json)
+
       - name: create issue
         uses: imjohnbo/issue-bot@v3
         with:
           assignees: "BWu1999"
           labels: "documentation"
-          title: ${{ steps.cond.output.title }}
+          title: ${{ steps.parsed.output.title }}
           body: |
             ${{ steps.cond.output.relInd }}
             - [ ] Release Task 1
