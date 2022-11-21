@@ -23,7 +23,7 @@ jobs:
           titles=($(jq -r '.[].subject.type' data.json))
           threadids=($(jq -r '.[].subject.type' data.json))
           count=0
-          for i in "$types"
+          for i in "{$types}"
           do
              echo ${repos[$count]}
              if [${types[$count]} == "Release" && ${repos[$count]} == "Testing_Trigger"]
