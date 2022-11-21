@@ -25,7 +25,7 @@ jobs:
           count=0
           for i in "${types[@]}"
             do
-              if [[ "$types[$count]}" == "Release" ]]
+              if [[ "$types[$count]}" == *"Release"* ]]
               then
                 echo "here"
               else
