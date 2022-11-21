@@ -20,9 +20,7 @@ jobs:
         run: |
           types=($(jq -r '.[].subject.type' data.json))
           repos=($(jq -r '.[].repository.name' data.json))
-          gtitles=($(jq -r '.[].subject.title' data.json))
           threadids=($(jq -r '.[].subject.id' data.json))
-          echo "$gtitles"
           count=0
           for i in "${types[@]}"
             do
@@ -31,7 +29,7 @@ jobs:
               then
                 echo "here"
                 echo "relInd=$count" >>$GITHUB_OUTPUT
-                echo "title=${gtitles[$count]}" >> $GITHUB_OUTPUT
+                echo "repo=${repos[$count]}" >> $GITHUB_OUTPUT
               fi
               count+=1
             done
@@ -46,7 +44,7 @@ jobs:
         with:
           assignees: "BWu1999"
           labels: "documentation"
-          title: ${{ steps.parsed.output.title }}
+          title: "New Release on ${{ steps.parsed.output.repo }}"
           body: |
             ${{ steps.cond.output.relInd }}
             - [ ] Release Task 1
