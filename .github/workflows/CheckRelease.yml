@@ -32,6 +32,8 @@ jobs:
           https://api.github.com/notifications -o data.json
           
     #parse for fields and determine if an issue should be created (add repo into if statement if a specific repo is needed)
+    #checks for most recent release on a specific repo being watched, only one issue will be created
+    #MODIFY the IF statement to SPECIFY REPO
       - name: parse notif
         id: parsed
         run: |
@@ -41,12 +43,13 @@ jobs:
           declare -i count=0
           for i in "${types[@]}"
             do
-              if [[ "$i" == *"Release"* ]]
+              if [[ "$i" == *"Release"* ]] && [[ "${repos[$count]}" == *"Testing_Trigger"* ]]
               then
                 echo "relBool=true" >> $GITHUB_ENV
                 echo "repo=${repos[$count]}" >> $GITHUB_ENV
                 echo "threadID=${threadids[$count]}" >> $GITHUB_ENV
                 echo "${threadids[$count]}"
+                break
               fi
               count+=1
             done
