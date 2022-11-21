@@ -34,7 +34,7 @@ jobs:
           count=0
           for i in "${{ steps.parsed.output.types }}"
           do
-             if: i == "Release" && ${{ steps.parsed.output.repos[count] }} == "Testing_Trigger"; then
+             if: i == "Release" && ${{ steps.parsed.output.repos[$count] }} == "Testing_Trigger"; then
                echo "relInd=$count" >>$GITHUB_OUTPUT
              else
                count++
