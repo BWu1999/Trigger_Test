@@ -15,6 +15,7 @@ jobs:
           https://api.github.com/notifications -o data.json
           
     #parse for fields and determine if an issue should be created (add repo into if statement if a specific repo is needed)
+    #checks for most recent release on a specific repo being watched, only one issue will be created
       - name: parse notif
         id: parsed
         run: |
