@@ -39,6 +39,7 @@ jobs:
              if [${types[$count]} == "Release" && ${repos[$count]} == "Testing_Trigger"]
              then
                echo "relInd=$count" >>$GITHUB_OUTPUT
+               echo "here"
              else
                count+=1
              fi
@@ -50,7 +51,7 @@ jobs:
           labels: "documentation"
           title: "Test Issue"
           body: |
-            $steps.parsed.output.types[$steps.cond.output.relInd]
+            $type
             $steps.parsed.output.titles[$steps.cond.output.relInd]
             - [ ] Release Task 1
             - [ ] Release Task 2
@@ -62,6 +63,7 @@ jobs:
           close-previous: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          type: ${{ steps.parsed.output.types[${{ steps.cond.output.relInd }}] }}
         
     #concept is to take these two values, write conditional statement based around the type and repo
     #if the type and repo match the watched repo name and is a release, then generate an issue for the release.
