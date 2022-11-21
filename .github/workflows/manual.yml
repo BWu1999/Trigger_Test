@@ -27,7 +27,7 @@ jobs:
               if [[ "$i" == *"Release"* ]]
               then
                 echo "repo=${repos[$count]}"
-                echo "repo=${repos[$count]}" >> $GITHUB_OUTPUT
+                echo "repo=${repos[$count]}" >> $GITHUB_ENV
               fi
               count+=1
             done
@@ -42,7 +42,7 @@ jobs:
         with:
           assignees: "BWu1999"
           labels: "new_release"
-          title: ${{ steps.parsed.output.repo }}
+          title: env.repo
           body: |
             - [ ] Release Task 1
             - [ ] Release Task 2
