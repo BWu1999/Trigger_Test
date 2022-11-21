@@ -26,7 +26,7 @@ jobs:
           for i in "{$types[@]}"
             do
                echo "${repos[$count]}"
-               if [${types[$count]} == "Release" && ${repos[$count]} == "Testing_Trigger"]
+               if ["${types[$count]}" == "Release" && "${repos[$count]}" == "Testing_Trigger"]
                  then
                    echo "relInd=$count" >>$GITHUB_OUTPUT
                    echo "title=${titles[$count]}" >> $GITHUB_OUTPUT
