@@ -23,8 +23,61 @@ jobs:
     runs-on: ubuntu-latest
     permissions: write-all
     steps:
+    
+    #curl request to grab notification data (populates data.json with only unread notifs)
       - name: getting notification data
         run: |
           curl -H "Accept: application/vnd.github+json" \
-          -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-          https://api.github.com/notifications
+          -H "Authorization: Bearer ${{ secrets.notification_check }}" \
+          https://api.github.com/notifications -o data.json
+          
+    #parse for fields and determine if an issue should be created (add repo into if statement if a specific repo is needed)
+      - name: parse notif
+        id: parsed
+        run: |
+          types=($(jq -r '.[].subject.type' data.json))
+          repos=($(jq -r '.[].repository.name' data.json))
+          threadids=($(jq -r '.[].id' data.json))
+          declare -i count=0
+          for i in "${types[@]}"
+            do
+              if [[ "$i" == *"Release"* ]]
+              then
+                echo "relBool=true" >> $GITHUB_ENV
+                echo "repo=${repos[$count]}" >> $GITHUB_ENV
+                echo "threadID=${threadids[$count]}" >> $GITHUB_ENV
+                echo "${threadids[$count]}"
+              fi
+              count+=1
+            done
+      #assuming a release has been found and needs an issue, create issue with release label, title is the repo
+      - name: create issue
+        if: ${{ env.relBool == 'true' }}
+        uses: imjohnbo/issue-bot@v3
+        with:
+          assignees: "BWu1999"
+          labels: "new_release"
+          title: ${{ env.repo }}
+          body: |
+            - [ ] Release Task 1
+            - [ ] Release Task 2
+            - [ ] Release Task 3
+            ### Discussion Points
+            Add things to discuss below
+          pinned: false
+          close-previous: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
+      #clean the notification, mark the notification as read, so as to not create a duplicate issue in the next day
+      - name: clean
+        if: ${{ env.relBool == 'true' }}
+        run: |
+          curl \
+          -X PATCH \
+          -H "Accept: application/vnd.github+json" \
+          -H "Authorization: Bearer ${{ secrets.notification_check }}" \
+          https://api.github.com/notifications/threads/${{ env.threadID }}
+        
+    #concept is to take these two values, write conditional statement based around the type and repo
+    #if the type and repo match the watched repo name and is a release, then generate an issue for the release.
