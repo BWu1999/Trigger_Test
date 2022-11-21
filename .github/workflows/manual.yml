@@ -18,10 +18,10 @@ jobs:
       - name: parse notif
         id: parsed
         run: |
-          echo "types=$($(jq -r '.[].subject.type' data.json))" >> $GITHUB_OUTPUT
-          echo "repos=$($(jq -r '.[].repository.name' data.json))" >> $GITHUB_OUTPUT
-          echo "titles=$($(jq -r '.[].repository.title' data.json))" >> $GITHUB_OUTPUT
-          echo "threadid=$($(jq -r '.[].id' data.json))" >> $GITHUB_OUTPUT
+          echo "types=$(jq -r '.[].subject.type' data.json)" >> $GITHUB_OUTPUT
+          echo "repos=$(jq -r '.[].repository.name' data.json)" >> $GITHUB_OUTPUT
+          echo "titles=$(jq -r '.[].repository.title' data.json)" >> $GITHUB_OUTPUT
+          echo "threadid=$(jq -r '.[].id' data.json)" >> $GITHUB_OUTPUT
         #  types=($(jq -r '.[].subject.type' data.json))
         #  echo ${types[0]}
         #  echo $(jq -r '.[].subject.type' data.json)
