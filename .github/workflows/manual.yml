@@ -43,7 +43,7 @@ jobs:
         with:
           assignees: "BWu1999"
           labels: "documentation"
-          title: New Release on ${{ steps.parsed.output.repo }}
+          title: ${{ steps.parsed.output.repo }}
           body: |
             - [ ] Release Task 1
             - [ ] Release Task 2
