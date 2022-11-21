@@ -20,9 +20,11 @@ jobs:
         run: |
           echo "type=$(jq -r '.[].subject.type' data.json)" >> $GITHUB_OUTPUT
           echo "repo=$(jq -r '.[].repository.name' data.json)" >> $GITHUB_OUTPUT
+          echo "title=$(jq -r '.[].repository.title' data.json)" >> $GITHUB_OUTPUT
         #  echo $(jq -r '.[].subject.type' data.json)
         #  echo $(jq -r '.[].repository.name' data.json)
         #run: echo '::set-output name=type ::'$(jq -r '.[].subject.type' data.json)
+       
     
     #concept is to take these two values, write conditional statement based around the type and repo
     #if the type and repo match the watched repo name and is a release, then generate an issue for the release.
