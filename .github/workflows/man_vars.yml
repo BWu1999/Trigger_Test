@@ -21,3 +21,4 @@ jobs:
           types=($(jq -r '.[].subject.type' data.json))
           repos=$(jq -r '.[].repository.name' data.json)
           echo ${types[0]}
+          echo "gtypes=$types" >> $GITHUB_OUTPUT
