@@ -23,8 +23,8 @@ jobs:
           gtitles=($(jq -r '.[].subject.type' data.json))
           gthreadids=($(jq -r '.[].subject.type' data.json))
           echo "types=$gtypes" >> $GITHUB_OUTPUT
-          echo "repos=$grepos data.json)" >> $GITHUB_OUTPUT
-          echo "titles=$gtitles data.json)" >> $GITHUB_OUTPUT
+          echo "repos=$grepos" >> $GITHUB_OUTPUT
+          echo "titles=$gtitles" >> $GITHUB_OUTPUT
           echo "threadids=$gthreadids" >> $GITHUB_OUTPUT
         #  types=($(jq -r '.[].subject.type' data.json))
         #  echo ${types[0]}
