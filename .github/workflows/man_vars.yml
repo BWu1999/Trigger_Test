@@ -22,4 +22,7 @@ jobs:
           repos=$(jq -r '.[].repository.name' data.json)
           echo ${types[0]}
           echo ${types[1]}
-          echo #${types[@]}
+          for i in "${types[@]}"
+            do
+              echo "$i"
+            done
