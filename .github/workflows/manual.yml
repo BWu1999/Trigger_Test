@@ -27,7 +27,6 @@ jobs:
               if [[ "$i" == *"Release"* ]]
               then
                 echo "repo=${repos[$count]}"
-                echo "relInd=$count" >>$GITHUB_OUTPUT
                 echo "repo=${repos[$count]}" >> $GITHUB_OUTPUT
               fi
               count+=1
@@ -42,7 +41,7 @@ jobs:
         uses: imjohnbo/issue-bot@v3
         with:
           assignees: "BWu1999"
-          labels: "documentation"
+          labels: "new_release"
           title: ${{ steps.parsed.output.repo }}
           body: |
             - [ ] Release Task 1
