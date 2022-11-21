@@ -33,13 +33,14 @@ jobs:
         run: |
           count=0
           repos=${{ steps.parsed.output.repos }}
+          types=${{ steps.parsed.output.types }}
           for i in "${{ steps.parsed.output.types }}"
           do
-             if [i == "Release" && ${repos[$count]} == "Testing_Trigger"]
+             if [${types[$count]} == "Release" && ${repos[$count]} == "Testing_Trigger"]
              then
                echo "relInd=$count" >>$GITHUB_OUTPUT
              else
-               count++
+               count+=1
              fi
           done
       - name: create issue
