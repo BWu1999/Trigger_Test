@@ -48,7 +48,7 @@ jobs:
           title: "Test Issue"
           body: |
             $steps.parsed.output.types[$steps.cond.output.relInd]
-            ${{ steps.parsed.output.titles[${{ steps.cond.output.relInd }}] }}
+            $steps.parsed.output.titles[$steps.cond.output.relInd]
             - [ ] Release Task 1
             - [ ] Release Task 2
             - [ ] Release Task 3
