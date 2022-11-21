@@ -26,7 +26,7 @@ jobs:
             do
               if [[ "$i" == *"Release"* ]]
               then
-                echo "repo=${repos[$count]}"
+                echo "relBool=true" >> $GITHUB_ENV
                 echo "repo=${repos[$count]}" >> $GITHUB_ENV
               fi
               count+=1
@@ -38,6 +38,7 @@ jobs:
         #run: echo '::set-output name=type ::'$(jq -r '.[].subject.type' data.json)
 
       - name: create issue
+        if: ${{ env.relBool == 'true' }}
         uses: imjohnbo/issue-bot@v3
         with:
           assignees: "BWu1999"
