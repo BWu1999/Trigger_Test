@@ -31,7 +31,7 @@ jobs:
         with:
           assignees: "BWu1999"
           labels: "documentation"
-          title: ${{ steps.parsed.output.title }}
+          title: "Release"
           body: |
             ### Assuming curl into inbox works, stream release no. and application name
             - [ ] Release Task 1
