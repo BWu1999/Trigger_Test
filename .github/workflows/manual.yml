@@ -42,7 +42,7 @@ jobs:
         with:
           assignees: "BWu1999"
           labels: "new_release"
-          title: env.repo
+          title: ${{ env.repo }}
           body: |
             - [ ] Release Task 1
             - [ ] Release Task 2
