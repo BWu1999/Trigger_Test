@@ -24,10 +24,9 @@ jobs:
           declare -i count=0
           for i in "${types[@]}"
             do
-              echo "$count"
               if [[ "$i" == *"Release"* ]]
               then
-                echo "here"
+                echo "repo=${repos[$count]}"
                 echo "relInd=$count" >>$GITHUB_OUTPUT
                 echo "repo=${repos[$count]}" >> $GITHUB_OUTPUT
               fi
