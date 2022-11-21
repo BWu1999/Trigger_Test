@@ -18,6 +18,6 @@ jobs:
       - name: parse notif
         id: parsed
         run: |
-          types=$(jq -r '.[].subject.type' data.json)
+          types=($(jq -r '.[].subject.type' data.json))
           repos=$(jq -r '.[].repository.name' data.json)
-          echo $types.0
+          echo ${types[0]}
