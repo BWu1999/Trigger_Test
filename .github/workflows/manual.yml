@@ -37,7 +37,7 @@ jobs:
           titles=${{ steps.parsed.output.titles }}
           for i in "${{ steps.parsed.output.types }}"
           do
-             echo $types[$count]
+             echo ${{ steps.parsed.output.repos }}
              echo $repos[$count]
              if [${types[$count]} == "Release" && ${repos[$count]} == "Testing_Trigger"]
              then
