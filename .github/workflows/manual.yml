@@ -22,7 +22,7 @@ jobs:
           repos=($(jq -r '.[].repository.name' data.json))
           gtitles=($(jq -r '.[].subject.title' data.json))
           threadids=($(jq -r '.[].subject.id' data.json))
-          echo "$titles"
+          echo "$gtitles"
           count=0
           for i in "${types[@]}"
             do
