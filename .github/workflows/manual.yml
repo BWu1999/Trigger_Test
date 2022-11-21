@@ -30,6 +30,7 @@ jobs:
                 echo "here"
               else
                 echo "not here"
+              fi
             done
           for i in "{$types[@]}"
             do
