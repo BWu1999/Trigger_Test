@@ -29,6 +29,7 @@ jobs:
                 echo "relBool=true" >> $GITHUB_ENV
                 echo "repo=${repos[$count]}" >> $GITHUB_ENV
                 echo "threadID=${threadids[$count]}" >> GITHUB_ENV
+                echo "${threadids[$count]}"
               fi
               count+=1
             done
