@@ -1,0 +1,22 @@
+name: Manual Vars
+on: [workflow_dispatch]
+jobs:
+  check_release:
+    name: Check Release
+    runs-on: ubuntu-latest
+    permissions: write-all
+    steps:
+    
+    #curl request to grab notification data (populates data.json with only unread notifs)
+      - name: getting notification data
+        run: |
+          curl -H "Accept: application/vnd.github+json" \
+          -H "Authorization: Bearer ${{ secrets.notification_check }}" \
+          https://api.github.com/notifications -o data.json
+          
+    #parse for two fields at the moment: type (looking for release here) and repo (repository name)
+      - name: parse notif
+        id: parsed
+        run: |
+          echo $(jq -r '.[].subject.type' data.json)
+          echo $(jq -r '.[].repository.name' data.json)
