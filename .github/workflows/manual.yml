@@ -34,18 +34,6 @@ jobs:
               fi
               count+=1
             done
-          for i in "{$types[@]}"
-            do
-              if [[ "${types[$count]}" == "Release" ]]
-              then
-                echo "relInd=$count" >>$GITHUB_OUTPUT
-                echo "title=${titles[$count]}" >> $GITHUB_OUTPUT
-                echo "here"
-              else
-                count+=1
-                echo "${repos[$count]}"
-              fi
-            done
         #  types=($(jq -r '.[].subject.type' data.json))
         #  echo ${types[0]}
         #  echo $(jq -r '.[].subject.type' data.json)
