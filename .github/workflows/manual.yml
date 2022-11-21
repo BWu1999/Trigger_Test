@@ -16,6 +16,7 @@ jobs:
           
     #parse for fields and determine if an issue should be created (add repo into if statement if a specific repo is needed)
     #checks for most recent release on a specific repo being watched, only one issue will be created
+    #MODIFY the IF statement to SPECIFY REPO
       - name: parse notif
         id: parsed
         run: |
